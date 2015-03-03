@@ -1,12 +1,26 @@
 class Task < ActiveRecord::Base
+  validates_presence_of :status, :content
 
-  def  status
+  def status
     status = read_attribute :status
-    I18n.t "tasks.status.#{status}"
+    I18n.t "task.status.#{status}"
   end
 
   def status= status
-    write_attribute :status, fetch_status_code(status)
+    if not status.is_a? Symbol
+      write_attribute :status, status
+    else
+      write_attribute :status, fetch_status_code(status)
+    end
+  end
+
+  def get_status
+    fetch_status_code read_attribute :status
+  end
+
+  # Check if the task is at status [ preparing, ongoing, finished, error]
+  def status? status
+    read_attribute(:status) == fetch_status_code(status)
   end
 
   private

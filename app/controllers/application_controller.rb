@@ -5,7 +5,16 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
+  # GET '/'
+  def index
+
+  end
+
   def set_locale
     I18n.locale = "zh-CN"
+  end
+
+  def default_url_options options = {}
+    options
   end
 end

@@ -1,7 +1,49 @@
 zh-CN:
-  tasks:
+  task:
     status:
-      '0': 准备中
-      '1': 进行中
-      '2': 已完成
-      '3': 出错
+      '0': "准备中"
+      '1': "进行中"
+      '2': "已完成"
+      '3': "出错"
+    notice:
+      create: "任务已成功创建"
+      destroy: "任务已成功删除"
+      update: "任务已成功更新"
+    form:
+      legend:
+        edit: "编辑任务"
+        new: "新建任务"
+      error_happened: "有错误发生"
+  home: "首页"
+  tasks: "任务"
+  helpers:
+    submit:
+      create: "新建%{model}"
+      update: "更新%{model}"
+  activerecord:
+    models:
+      task: "任务"
+    attributes:
+      task:
+        id: "编号"
+        status: "状态"
+        content: "内容"
+    errors:
+      models:
+        task:
+          attributes:
+            status:
+              blank: "不能为空"
+            content:
+              blank: "不能为空"
+  form:
+    submit: "提交"
+    cancel: "取消"
+    back: "返回"
+    operations: "操作"
+    operation:
+      new: "新建"
+      edit: "编辑"
+      show: "查看"
+      destroy: "删除"
+      destroy_confirm: "确认要删除吗"
