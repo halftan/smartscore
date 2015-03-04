@@ -1,0 +1,13 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3 jumbotron">
+      <p>
+        <strong><%= t 'activerecord.attributes.task_config.name' %>: </strong>
+        <%= @task_config.name %>
+      </p>
+      <%= link_to t('form.operation.edit'), edit_task_config_path(@task_config), class: 'btn btn-warning' %>
+      <%= link_to t('form.back'), task_configs_path, class: 'btn btn-default' %>
+    </div>
+  </div>
+</div>

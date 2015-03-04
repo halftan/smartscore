@@ -28,7 +28,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { flash[:success] = I18n.t('task.notice.create'); redirect_to @task }
+        format.html { flash[:success] = I18n.t('task.create.notice.success'); redirect_to @task }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -42,7 +42,8 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { flash[:success] = I18n.t('task.notice.update'); redirect_to @task }
+        format.html { flash[:success] = I18n.t('task.update.notice.success'); redirect_to @task }
+
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { flash[:danger] = I18n.t('task.notice.destroy'); redirect_to tasks_url }
+      format.html { flash[:danger] = I18n.t('task.destroy.notice.success'); redirect_to tasks_url }
       format.json { head :no_content }
     end
   end
@@ -69,6 +70,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:status, :content)
+      params.require(:task).permit(:content)
     end
 end

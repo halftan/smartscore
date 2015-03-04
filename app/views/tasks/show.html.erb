@@ -11,9 +11,7 @@
 
       <p>
         <strong><%= t 'activerecord.attributes.task.status' %>: </strong>
-        <span class="label <%= status_label @task %>">
-          <%= @task.status %>
-        </span>
+        <%= status_label @task %>
       </p>
 
       <p>

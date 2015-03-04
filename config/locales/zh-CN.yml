@@ -1,21 +1,8 @@
 zh-CN:
-  task:
-    status:
-      '0': "准备中"
-      '1': "进行中"
-      '2': "已完成"
-      '3': "出错"
-    notice:
-      create: "任务已成功创建"
-      destroy: "任务已成功删除"
-      update: "任务已成功更新"
-    form:
-      legend:
-        edit: "编辑任务"
-        new: "新建任务"
-      error_happened: "有错误发生"
+  brand: "Smart Score"
   home: "首页"
   tasks: "任务"
+  task_configs: "任务配置"
   helpers:
     submit:
       create: "新建%{model}"
@@ -23,11 +10,16 @@ zh-CN:
   activerecord:
     models:
       task: "任务"
+      task_config: "任务配置"
     attributes:
       task:
         id: "编号"
         status: "状态"
         content: "内容"
+      task_config:
+        id: "编号"
+        name: "名称"
+        param: "参数"
     errors:
       models:
         task:
@@ -36,14 +28,66 @@ zh-CN:
               blank: "不能为空"
             content:
               blank: "不能为空"
+        task_config:
+          base:
+            task_model:
+              blank: "任务类型及模型不能为空"
+              incorrect: "请选择正确的任务类型及模型"
+          attributes:
+            name:
+              blank: "不能为空"
   form:
     submit: "提交"
     cancel: "取消"
     back: "返回"
     operations: "操作"
+    error_happened: "有错误发生"
     operation:
       new: "新建"
       edit: "编辑"
       show: "查看"
       destroy: "删除"
       destroy_confirm: "确认要删除吗"
+  task:
+    status:
+      '0': "准备中"
+      '1': "进行中"
+      '2': "已完成"
+      '3': "出错"
+    create:
+      notice:
+        success: "任务已成功创建"
+    update:
+      notice:
+        success: "任务已成功更新"
+    destroy:
+      notice:
+        success: "任务已成功删除"
+    form:
+      legend:
+        edit: "编辑任务"
+        new: "新建任务"
+  task_config:
+    create:
+      notice:
+        success: "任务配置已成功创建"
+    update:
+      notice:
+        success: "任务配置已成功更新"
+    destroy:
+      notice:
+        success: "任务配置已成功删除"
+    form:
+      legend:
+        edit: "编辑任务配置"
+        new: "新建任务配置"
+    task_type:
+      classification: "分类"
+      clustering: "聚类"
+    model_type:
+      classification:
+        canopy: "Canopy"
+        kmeans: "KMeans"
+        fuzzy_kmeans: "Fuzzy KMeans"
+      clustering:
+        random_forest: "Random Forest"
