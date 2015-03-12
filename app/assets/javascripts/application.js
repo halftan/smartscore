@@ -16,6 +16,6 @@
 //= require bootstrap
 //= require material
 //= require ripples
-//= require_tree .
+// require_tree .
 
 Turbolinks.enableProgressBar();
