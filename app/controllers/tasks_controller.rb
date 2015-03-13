@@ -25,7 +25,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
+    @task.task_config = TaskConfig.find params[:task][:task_config]
     respond_to do |format|
       if @task.save
         format.html { flash[:success] = I18n.t('task.create.notice.success'); redirect_to @task }
@@ -41,6 +41,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1.json
   def update
     respond_to do |format|
+      @task.task_config = TaskConfig.find params[:task][:task_config]
       if @task.update(task_params)
         format.html { flash[:success] = I18n.t('task.update.notice.success'); redirect_to @task }
 

@@ -69,6 +69,6 @@ class TaskConfigsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def task_config_params
-    params.require(:task_config).permit(:name)
+    params.require(:task_config).permit(:name, :task_type, :model_type)
   end
 end

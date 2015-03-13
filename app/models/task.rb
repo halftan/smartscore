@@ -1,5 +1,8 @@
 class Task < ActiveRecord::Base
-  validates_presence_of :status, :content
+  belongs_to :task_config
+  belongs_to :data
+
+  validates_presence_of :status, :content, :task_config
 
   def status
     if valid_status?

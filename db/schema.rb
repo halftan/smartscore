@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304082445) do
+ActiveRecord::Schema.define(version: 20150313085338) do
+
+  create_table "data", force: :cascade do |t|
+    t.string   "path",       limit: 255
+    t.integer  "size",       limit: 4
+    t.string   "label",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "task_configs", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -27,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150304082445) do
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.integer  "task_config_id", limit: 4
+    t.integer  "datum_id",       limit: 4
   end
 
 end

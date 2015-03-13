@@ -19,16 +19,16 @@
           <legend><%= locals[:legend] %></legend>
 
           <div class="form-group">
-            <%= f.label :status, class: 'control-label col-lg-2' %>
+            <%= f.label :content, class: 'control-label col-lg-2' %><br>
             <div class="col-lg-10">
-              <%= f.text_field :status, class: 'form-control', required: true %>
+              <%= f.text_area :content, class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
-            <%= f.label :content, class: 'control-label col-lg-2' %><br>
+            <%= f.label :task_config, class: 'control-label col-lg-2' %><br>
             <div class="col-lg-10">
-              <%= f.text_area :content, class: 'form-control' %>
+              <%= f.select :task_config, get_related_task_configs, {}, class: 'form-control' %>
             </div>
           </div>
 

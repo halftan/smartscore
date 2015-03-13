@@ -16,10 +16,13 @@ zh-CN:
         id: "编号"
         status: "状态"
         content: "内容"
+        task_config: "任务配置"
       task_config:
         id: "编号"
         name: "名称"
         param: "参数"
+        task_type: "任务类型"
+        model_type: "算法模型"
     errors:
       models:
         task:
@@ -27,6 +30,8 @@ zh-CN:
             status:
               blank: "不能为空"
             content:
+              blank: "不能为空"
+            task_config:
               blank: "不能为空"
         task_config:
           base:
@@ -85,9 +90,7 @@ zh-CN:
       classification: "分类"
       clustering: "聚类"
     model_type:
-      classification:
-        canopy: "Canopy"
-        kmeans: "KMeans"
-        fuzzy_kmeans: "Fuzzy KMeans"
-      clustering:
-        random_forest: "Random Forest"
+      canopy: "Canopy"
+      kmeans: "KMeans"
+      fuzzy_kmeans: "Fuzzy KMeans"
+      random_forest: "Random Forest"

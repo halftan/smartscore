@@ -1,0 +1,11 @@
+﻿Smartscore
+http://localhost:3000/tasks/3
+
+Ruby on Rails API
+http://api.rubyonrails.org/
+
+Active Record Associations — Ruby on Rails Guides
+http://guides.rubyonrails.org/association_basics.html
+
+Class: Array (Ruby 2.2.1)
+http://ruby-doc.org/core-2.2.1/Array.html
