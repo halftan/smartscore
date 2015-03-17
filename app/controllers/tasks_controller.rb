@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :queue]
 
   # GET /tasks
   # GET /tasks.json
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-    @task.task_config = TaskConfig.find params[:task][:task_config]
+    # update_association
     respond_to do |format|
       if @task.save
         format.html { flash[:success] = I18n.t('task.create.notice.success'); redirect_to @task }
@@ -41,7 +41,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1.json
   def update
     respond_to do |format|
-      @task.task_config = TaskConfig.find params[:task][:task_config]
+      # update_association
       if @task.update(task_params)
         format.html { flash[:success] = I18n.t('task.update.notice.success'); redirect_to @task }
 
@@ -63,6 +63,19 @@ class TasksController < ApplicationController
     end
   end
 
+  # GET /tasks/1/queue
+  def queue
+    case @task.queue
+    when 0
+      flash[:info] = I18n.t('task.queue.notice.success')
+    else
+      flash[:danger] = I18n.t('task.queue.notice.error')
+    end
+    respond_to do |format|
+      format.html { redirect_to tasks_url }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -70,7 +83,13 @@ class TasksController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    # TODO: check task_config_id & datum_id's validity.
     def task_params
-      params.require(:task).permit(:content)
+      params.require(:task).permit(:content, :task_config_id, :datum_id)
+    end
+
+    def update_association
+      @task.task_config = TaskConfig.find params[:task][:task_config] unless params[:task][:task_config].nil?
+      @task.datum = Datum.find params[:task][:datum] unless params[:task][:datum].nil?
     end
 end

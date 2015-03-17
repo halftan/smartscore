@@ -1,4 +1,4 @@
-selData = $.parseJSON $('#model-type-select').attr('data-select')
+selData = $('#model-type-select').data('select')
 modelSelect = $("[name='task_config[model_type]']")
 typeSelect = $("[name='task_config[task_type]']")
 

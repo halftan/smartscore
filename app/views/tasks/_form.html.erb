@@ -1,45 +1,49 @@
-<div class="container">
+<div class="row">
+  <div class="col-lg-10 col-lg-offset-1">
+    <% if @task.errors.any? %>
+      <div class="alert alert-danger alert-dismissable" id="error">
+        <strong><%= t "form.error_happened" %></strong>
+        <button type="button" class="close" data-dismiss="alert">x</button>
 
-  <div class="row">
-    <div class="col-lg-6 col-lg-offset-3">
-      <% if @task.errors.any? %>
-        <div class="alert alert-danger alert-dismissable" id="error">
-          <strong><%= t "form.error_happened" %></strong>
-          <button type="button" class="close" data-dismiss="alert">x</button>
+        <ul>
+          <% @task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= form_for(@task, html: { class: 'form-horizontal' }) do |f| %>
+      <fieldset>
+        <legend><%= locals[:legend] %></legend>
 
-          <ul>
-            <% @task.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
+        <div class="form-group">
+          <%= f.label :content, class: 'control-label col-lg-2' %><br>
+          <div class="col-lg-10">
+            <%= f.text_area :content, class: 'form-control' %>
+          </div>
         </div>
-      <% end %>
-      <%= form_for(@task, html: { class: 'form-horizontal' }) do |f| %>
-        <fieldset>
-          <legend><%= locals[:legend] %></legend>
 
-          <div class="form-group">
-            <%= f.label :content, class: 'control-label col-lg-2' %><br>
-            <div class="col-lg-10">
-              <%= f.text_area :content, class: 'form-control' %>
-            </div>
+        <div class="form-group">
+          <%= f.label :task_config_id, class: 'control-label col-lg-2' %><br>
+          <div class="col-lg-10">
+            <%= f.select :task_config_id, get_related_task_configs, {}, class: 'form-control' %>
           </div>
+        </div>
 
-          <div class="form-group">
-            <%= f.label :task_config, class: 'control-label col-lg-2' %><br>
-            <div class="col-lg-10">
-              <%= f.select :task_config, get_related_task_configs, {}, class: 'form-control' %>
-            </div>
+        <div class="form-group">
+          <%= f.label :datum_id, class: 'control-label col-lg-2' %><br>
+          <div class="col-lg-10">
+            <%= f.select :datum_id, get_related_data, {}, class: 'form-control' %>
           </div>
+        </div>
 
-          <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
-              <%= f.submit class: 'btn btn-primary' %>
-              <%= link_to t('form.cancel'), :back, class: 'btn btn-default' %>
-            </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <%= f.submit class: 'btn btn-primary' %>
+            <%= link_to t('form.cancel'), :back, class: 'btn btn-default' %>
           </div>
-        </fieldset>
-      <% end %>
-    </div>
+        </div>
+      </fieldset>
+    <% end %>
   </div>
 </div>

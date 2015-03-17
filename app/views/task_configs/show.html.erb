@@ -1,21 +1,18 @@
-<div class="container">
-
-  <div class="row">
-    <div class="col-lg-6 col-lg-offset-3 jumbotron">
-      <p>
-        <strong><%= t 'activerecord.attributes.task_config.name' %>: </strong>
-        <%= @task_config.name %>
-      </p>
-      <p>
-        <strong><%= t 'activerecord.attributes.task_config.task_type' %>: </strong>
-        <%= t 'task_config.task_type.' + @task_config.task_type %>
-      </p>
-      <p>
-        <strong><%= t 'activerecord.attributes.task_config.model_type' %>: </strong>
-        <%= t "task_config.model_type.#{@task_config.model_type}" %>
-      </p>
-      <%= link_to t('form.operation.edit'), edit_task_config_path(@task_config), class: 'btn btn-warning' %>
-      <%= link_to t('form.back'), task_configs_path, class: 'btn btn-default' %>
-    </div>
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 jumbotron">
+    <p>
+      <strong><%= t 'activerecord.attributes.task_config.name' %>: </strong>
+      <%= @task_config.name %>
+    </p>
+    <p>
+      <strong><%= t 'activerecord.attributes.task_config.task_type' %>: </strong>
+      <%= t 'task_config.task_type.' + @task_config.task_type %>
+    </p>
+    <p>
+      <strong><%= t 'activerecord.attributes.task_config.model_type' %>: </strong>
+      <%= t "task_config.model_type.#{@task_config.model_type}" %>
+    </p>
+    <%= link_to t('form.operation.edit'), edit_task_config_path(@task_config), class: 'btn btn-warning' %>
+    <%= link_to t('form.back'), task_configs_path, class: 'btn btn-default' %>
   </div>
 </div>

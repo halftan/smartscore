@@ -14,6 +14,7 @@ zh-CN:
     attributes:
       task:
         id: "编号"
+        datum: "文件"
         status: "状态"
         content: "内容"
         task_config: "任务配置"
@@ -51,14 +52,16 @@ zh-CN:
       new: "新建"
       edit: "编辑"
       show: "查看"
+      queue: "添加到队列"
       destroy: "删除"
       destroy_confirm: "确认要删除吗"
   task:
     status:
       '0': "准备中"
-      '1': "进行中"
-      '2': "已完成"
-      '3': "出错"
+      '1': "排队中"
+      '2': "进行中"
+      '3': "已完成"
+      '-1': "出错"
     create:
       notice:
         success: "任务已成功创建"
@@ -68,6 +71,9 @@ zh-CN:
     destroy:
       notice:
         success: "任务已成功删除"
+    queue:
+      notice:
+        success: "任务已成功加入队列"
     form:
       legend:
         edit: "编辑任务"

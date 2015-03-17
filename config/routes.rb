@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :tasks
+  resources :tasks do
+    member do
+      post 'queue'
+    end
+  end
   resources :task_configs
 
   # The priority is based upon order of creation: first created -> highest priority.

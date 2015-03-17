@@ -1,14 +1,19 @@
 class Task < ActiveRecord::Base
   belongs_to :task_config
-  belongs_to :data
+  belongs_to :datum
 
   validates_presence_of :status, :content, :task_config
+
+  def queue
+    # todo: implement this!
+    0
+  end
 
   def status
     if valid_status?
       status = read_attribute :status
     else
-      status = 3
+      status = -1
     end
     I18n.t "task.status.#{status}"
   end
@@ -34,21 +39,23 @@ class Task < ActiveRecord::Base
 
   def valid_status?
     status = read_attribute :status
-    status.present? and [0, 1, 2, 3].find_index(status).present?
+    status.present? and [-1, 0, 1, 2, 3].find_index(status).present?
   end
 
   def fetch_status_code status
     case status
       when :preparing
         0
-      when :ongoing
+      when :queueing
         1
-      when :finished
+      when :ongoing
         2
+      when :finished
+        3
       when :error
-        3
+        -1
       else
-        3
+        -1
     end
   end
 
@@ -57,10 +64,12 @@ class Task < ActiveRecord::Base
       when 0
         :preparing
       when 1
-        :ongoing
+        :queueing
       when 2
-        :finished
+        :ongoing
       when 3
+        :finished
+      when -1
         :error
       else
         :error
