@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
+  @@redis = nil
+
   # GET '/'
   def index
 
@@ -16,5 +18,12 @@ class ApplicationController < ActionController::Base
 
   def default_url_options options = {}
     options
+  end
+
+  def redis
+    if @@redis.nil?
+      @@redis = Redis.new(driver: :hiredis)
+    end
+    @@redis
   end
 end

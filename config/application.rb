@@ -34,5 +34,8 @@ module Smartscore
     # Add available locales
     config.i18n.available_locales = [:en, :'zh-CN']
     config.i18n.default_locale = :'zh-CN'
+
+    # Redis RPC key
+    config.x.redis_key_smartscore_rpc = 'smartscore-taskqueue'
   end
 end

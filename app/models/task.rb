@@ -5,8 +5,16 @@ class Task < ActiveRecord::Base
   validates_presence_of :status, :content, :task_config
 
   def queue
-    # todo: implement this!
-    0
+    data = {
+      taskType:   task_config.param_hash[:task_type],
+      modelType:  task_config.param_hash[:model_type],
+      input:      datum.path,
+      return_key: "#{Time.now.to_i}-#{SecureRandom.uuid}",
+    }
+    redis.publish(Rails.configuration.x.redis_key_smartscore_rpc, data.to_json)
+    Kernel.sleep(2)
+    # TODO: implement return_key at java side.
+    redis.get(data[:return_key])
   end
 
   def status
