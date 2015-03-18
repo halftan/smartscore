@@ -13,13 +13,13 @@ zh-CN:
       task_config: "任务配置"
     attributes:
       task:
-        id: "编号"
-        datum: "文件"
+        id: "任务编号"
+        datum_id: "文件"
         status: "状态"
         content: "内容"
-        task_config: "任务配置"
+        task_config_id: "任务配置"
       task_config:
-        id: "编号"
+        id: "配置编号"
         name: "名称"
         param: "参数"
         task_type: "任务类型"
