@@ -12,15 +12,19 @@
 
 <div class="container">
   <%- flash.to_hash.each_pair do |key, value| %>
-      <div class="alert alert-dismissable <%= "alert-#{key}" %>">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <p><%= value %></p>
+    <div class="alert alert-dismissable <%= "alert-#{key}" %>">
+      <button type="button" class="close" data-dismiss="alert">x</button>
+      <p><%= value %></p>
     </div>
   <%- end %>
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
+    <%- unless current_page? '/' %>
+      <div class="col-lg-8 col-lg-offset-2">
+        <%= yield %>
+      </div>
+    <%- else %>
       <%= yield %>
-    </div>
+    <%- end %>
   </div>
 </div>
 
