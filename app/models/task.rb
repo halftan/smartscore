@@ -5,16 +5,21 @@ class Task < ActiveRecord::Base
   validates_presence_of :status, :content, :task_config
 
   def queue
+    if datum.nil? or datum.path.nil?
+      return 1
+    elsif not self.status? :preparing
+      return 2
+    end
     data = {
-      taskType:   task_config.param_hash[:task_type],
-      modelType:  task_config.param_hash[:model_type],
-      input:      datum.path,
-      return_key: "#{Time.now.to_i}-#{SecureRandom.uuid}",
+      taskType:  task_config.param_hash[:task_type],
+      modelType: task_config.param_hash[:model_type],
+      input:     datum.path,
+      output:    Rails.configuration.x.default_output_path,
+      taskId:    id,
     }
     redis.publish(Rails.configuration.x.redis_key_smartscore_rpc, data.to_json)
-    Kernel.sleep(2)
-    # TODO: implement return_key at java side.
-    redis.get(data[:return_key])
+    self.status = :queueing
+    0
   end
 
   def status
@@ -27,10 +32,10 @@ class Task < ActiveRecord::Base
   end
 
   def status= status
-    if not status.is_a? Symbol
-      write_attribute :status, status
-    else
+    if status.is_a? Symbol
       write_attribute :status, fetch_status_code(status)
+    else
+      write_attribute :status, status
     end
   end
 

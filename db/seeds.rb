@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+data = Datum.create([
+  { label: 'test1', path: '/tmp/data1', size: '12345' },
+  { label: 'test2', path: '/tmp/data2', size: '54321' },
+])

@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :queue]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :queue, :reset]
 
   # GET /tasks
   # GET /tasks.json
@@ -63,9 +63,10 @@ class TasksController < ApplicationController
     end
   end
 
-  # GET /tasks/1/queue
+  # POST /tasks/1/queue
   def queue
-    case @task.queue
+    ret = @task.queue
+    case ret.to_i
     when 0
       flash[:info] = I18n.t('task.queue.notice.success')
     else
@@ -73,6 +74,15 @@ class TasksController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to tasks_url }
+    end
+  end
+
+  # POST /tasks/1/reset
+  def reset
+    @task.status = :preparing
+    @task.save!
+    respond_to do |format|
+      format.html { flash[:info] = I18n.t('task.reset.notice.success'); redirect_to tasks_url }
     end
   end
 

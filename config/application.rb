@@ -37,5 +37,6 @@ module Smartscore
 
     # Redis RPC key
     config.x.redis_key_smartscore_rpc = 'smartscore-taskqueue'
+    config.x.default_output_path = '/tmp'
   end
 end
