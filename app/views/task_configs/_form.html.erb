@@ -7,7 +7,7 @@
 
         <ul>
           <% @task_config.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+            <li><%= message.to_s %></li>
           <% end %>
         </ul>
       </div>
@@ -45,6 +45,6 @@
         </div>
       </fieldset>
     <% end %>
-    <%= javascript_include_tag "task_config_form" %>
   </div>
 </div>
+<%= javascript_include_tag "task_config_form" %>

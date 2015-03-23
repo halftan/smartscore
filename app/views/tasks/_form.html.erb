@@ -7,7 +7,7 @@
 
         <ul>
           <% @task.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+            <li><%= message.to_s %></li>
           <% end %>
         </ul>
       </div>
@@ -17,21 +17,21 @@
         <legend><%= locals[:legend] %></legend>
 
         <div class="form-group">
-          <%= f.label :content, class: 'control-label col-lg-2' %><br>
+          <%= f.label :content, class: 'control-label col-lg-2' %>
           <div class="col-lg-10">
             <%= f.text_area :content, class: 'form-control' %>
           </div>
         </div>
 
         <div class="form-group">
-          <%= f.label :task_config_id, class: 'control-label col-lg-2' %><br>
+          <%= f.label :task_config_id, class: 'control-label col-lg-2' %>
           <div class="col-lg-10">
             <%= f.select :task_config_id, get_related_task_configs, {}, class: 'form-control' %>
           </div>
         </div>
 
         <div class="form-group">
-          <%= f.label :datum_id, class: 'control-label col-lg-2' %><br>
+          <%= f.label :datum_id, class: 'control-label col-lg-2' %>
           <div class="col-lg-10">
             <%= f.select :datum_id, get_related_data, {}, class: 'form-control' %>
           </div>
