@@ -6,7 +6,7 @@ module ActiveRecordRedisExtension
 
   def redis
     if @@redis.nil?
-      @@redis = Redis.new driver: :hiredis
+      @@redis = Redis.new host: Rails.configuration.x.redis_host, port: Rails.configuration.x.redis_port, driver: :hiredis
     end
     @@redis
   end

@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :queue, :reset]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :queue, :reset, :log]
 
   # GET /tasks
   # GET /tasks.json
@@ -83,6 +83,18 @@ class TasksController < ApplicationController
     @task.save!
     respond_to do |format|
       format.html { flash[:info] = I18n.t('task.reset.notice.success'); redirect_to tasks_url }
+    end
+  end
+
+  # GET /tasks/1/log.json
+  def log
+    from = params[:from] || 0
+    redis_key = "task-#{@task.id}-output"
+    to = redis.llen redis_key
+    log = redis.lrange redis_key, from, to
+
+    respond_to do |format|
+      format.json { render :log, locals: { from: from, to: to, log: log } }
     end
   end
 

@@ -38,5 +38,7 @@ module Smartscore
     # Redis RPC key
     config.x.redis_key_smartscore_rpc = 'smartscore-taskqueue'
     config.x.default_output_path = '/tmp'
+    config.x.redis_host = '127.0.0.1'
+    config.x.redis_port = 6379
   end
 end

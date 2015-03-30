@@ -4,6 +4,7 @@
   <title>Smartscore</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    controller_name, media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -13,7 +14,7 @@
 <div class="container">
   <%- flash.to_hash.each_pair do |key, value| %>
     <div class="alert alert-dismissable <%= "alert-#{key}" %>">
-      <button type="button" class="close" data-dismiss="alert">x</button>
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
       <p><%= value %></p>
     </div>
   <%- end %>

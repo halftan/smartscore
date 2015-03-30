@@ -54,6 +54,7 @@ zh-CN:
       show: "查看"
       queue: "添加到队列"
       reset: "重置任务状态"
+      show_log: "查看日志"
       destroy: "删除"
       destroy_confirm: "确认要删除吗"
   task:

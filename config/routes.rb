@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     member do
       post 'queue'
       post 'reset'
+      get 'log'
     end
   end
   resources :task_configs
